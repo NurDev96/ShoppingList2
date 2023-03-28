@@ -1,7 +1,8 @@
-package com.example.shoppinglist_2
+package com.example.shoppinglist_2.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.shoppinglist_2.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
