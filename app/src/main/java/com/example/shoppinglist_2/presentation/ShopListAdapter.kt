@@ -11,7 +11,6 @@ class ShopListAdapter :
 
     var count = 0
 
-
     var onShopItemLongClickListener: ((ShopItem) -> Unit)? = null
     var onShopItemClickListener: ((ShopItem) -> Unit)? = null
 
