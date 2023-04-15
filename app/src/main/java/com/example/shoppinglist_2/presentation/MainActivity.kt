@@ -72,7 +72,6 @@ class MainActivity : AppCompatActivity() {
                 val item = shopListAdapter.currentList[viewHolder.adapterPosition]
                 viewModel.deleteShopItem(item)
             }
-
         }
         val itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(rvShop)
@@ -91,5 +90,4 @@ class MainActivity : AppCompatActivity() {
             viewModel.changeEnabledState(it)
         }
     }
-
 }

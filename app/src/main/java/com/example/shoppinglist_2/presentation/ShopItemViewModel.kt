@@ -1,5 +1,6 @@
 package com.example.shoppinglist_2.presentation
 
+import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,8 +29,8 @@ class ShopItemViewModel : ViewModel() {
     val shopItem: LiveData<ShopItem>
         get() = _shopItem
 
-    private val _shouldCloseScreen = MutableLiveData<Boolean>()
-    val shouldCloseScreen: LiveData<Boolean>
+    private val _shouldCloseScreen = MutableLiveData<Unit>()
+    val shouldCloseScreen: LiveData<Unit>
         get() = _shouldCloseScreen
 
     fun getShopItem(shopItemId: Int) {
@@ -53,9 +54,11 @@ class ShopItemViewModel : ViewModel() {
         val count = realCount2(inputCount)
         val fieldsValue = validateInput(name, count)
         if (fieldsValue) {
-            val shopItem = ShopItem(name, count, true)
-            editShopItemUseCase.editShopItem(shopItem)
+            _shopItem.value?.let {
+                val item = it.copy(name = name, count = count )
+            editShopItemUseCase.editShopItem(item)
             finishWork()
+            }
         }
     }
 
@@ -90,7 +93,6 @@ class ShopItemViewModel : ViewModel() {
             result = false
         }
         if (count <= 0) {
-            // TODO
             _errorInputCount.value = true
             result = false
         }
@@ -106,6 +108,6 @@ class ShopItemViewModel : ViewModel() {
     }
 
     private fun finishWork() {
-        _shouldCloseScreen.value = true
+        _shouldCloseScreen.value = Unit
     }
 }
